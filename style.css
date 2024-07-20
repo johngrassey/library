@@ -40,6 +40,20 @@ HTML RESET
     border-style: none;
     border-radius: 5px;
     padding: 5px 20px;
+    cursor: pointer;
+  }
+
+  dialog {
+    width: 400px;
+    border-style: none;
+    border-radius: 15px;
+    padding: 25px;
+    margin: auto;
+  }
+
+  .dialoghead {
+    display: flex;
+    justify-content: space-between;
   }
 
   .menu {
@@ -54,7 +68,7 @@ HTML RESET
     padding: 25px;
     display: grid;
     gap: 25px;
-    grid-template-columns: repeat(5, 250px);
+    grid-template-columns: repeat(4, 300px);
     border-radius: 10px;
     justify-content: space-around;
   }
