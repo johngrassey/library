@@ -24,3 +24,41 @@ HTML RESET
   #root, #__next {
     isolation: isolate;
   }
+
+  /*
+  MAIN BODY
+  */
+
+  body {
+    background-color: #F2F2F2;
+    font-family: 'Inter';
+  }
+
+  button {
+    background-color: #A67153;
+    color: #F2F2F2;
+    border-style: none;
+    border-radius: 5px;
+    padding: 5px 20px;
+  }
+
+  .menu {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 50px;
+    background-color: #26150F;
+    color: #F2F2F2;
+  }
+
+  .library {
+    padding: 25px;
+    display: grid;
+    gap: 25px;
+    grid-template-columns: repeat(5, 250px);
+    border-radius: 10px;
+    justify-content: space-around;
+  }
+
+.book {
+    background-color: white;
+}
