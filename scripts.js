@@ -2,40 +2,12 @@
 
 const myLibrary = [];
 
-function Book(title, author) {
+function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
+  this.pages = pages;
+  this.read = read;
 };
-
-// function addBookToLibrary() {
-//   let title = prompt("Title?");
-//   let author = prompt("Author");
-
-//   let book1 = new Book(title, author);
-//   myLibrary.push(book1);
-// }
-
-// addBookToLibrary();
-// console.log(myLibrary);
-
-// Display Functions
-
-const library = document.querySelector(".library");
-
-function displayBook(books) {
-    books.map(book => {
-        const div = document.createElement("div");
-        div.classList.add("book");
-        const p = document.createElement("p");
-        p.textContent = `${book.title} by ${book.author}`;
-    
-        div.appendChild(p);
-        library.appendChild(div);
-    });
-}
-
-displayBook(myLibrary);
-
 
 // DIALOG MODAL
 
@@ -48,7 +20,51 @@ showButton.addEventListener("click", () => {
 });
 
 closeButton.addEventListener("click", () => {
-    dialog.close();
+    clearform();
 })
 
+function clearform() {
+    title.value = "";
+    author.value = "";
+    dialog.close();
+}
 
+// CREATE OBJECT
+
+const title = document.querySelector("#title");
+const author = document.querySelector("#author");
+const pages = document.querySelector("#pages");
+const read = document.querySelector("#read");
+const form = document.querySelector("form");
+const library = document.querySelector(".library");
+
+function createBook(event) {
+    event.preventDefault();
+    let book = new Book (title.value, author.value, pages.value, read.value);
+    myLibrary.push(book);
+
+    const div = document.createElement("div");
+    div.classList.add("book");
+    const header = document.createElement("h3");
+    header.textContent = book.title;
+    const p = document.createElement("p");
+    p.textContent = book.author;
+    const page = document.createElement("p");
+    page.textContent = book.pages + " pages";
+
+    div.appendChild(header);
+    div.appendChild(p);
+    div.appendChild(page);
+
+    if (book.read === true) {
+        const readtoggle = document.createElement("div");
+        readtoggle.textContent = "Read";
+        div.appendChild(readtoggle);
+    }
+
+    library.appendChild(div);
+
+    clearform();
+}
+
+form.addEventListener("submit", createBook);
