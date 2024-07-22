@@ -47,14 +47,27 @@ function createBook(event) {
 
     const div = document.createElement("div");
     div.classList.add("book");
+
     const header = document.createElement("h3");
     header.textContent = book.title;
-    const p = "By " + document.createElement("p");
-    p.textContent = book.author;
+
+    const img = document.createElement("img");
+    img.setAttribute("src", "images/trash-can-outline.svg");
+    img.setAttribute("alt", "Trash");
+    img.setAttribute("id", "trash");
+
+    const p = document.createElement("p");
+    p.textContent = "By " + book.author;
+
     const page = document.createElement("p");
     page.textContent = book.pages + " pages";
 
-    div.appendChild(header);
+    const headerdiv = document.createElement("div");
+    headerdiv.classList.add("bookheader");
+
+    div.appendChild(headerdiv);
+    headerdiv.appendChild(header);
+    headerdiv.appendChild(img);
     div.appendChild(p);
     div.appendChild(page);
 
@@ -67,6 +80,8 @@ function createBook(event) {
     library.appendChild(div);
 
     clearform();
-}
+};
+
+// DELETE BOOK
 
 form.addEventListener("submit", createBook);

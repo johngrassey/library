@@ -87,3 +87,13 @@ HTML RESET
 h3 {
     color: #244026;
 }
+
+.bookheader {
+    display: flex;
+    justify-content: space-between;
+}
+
+#trash {
+    height: 20px;
+    width: 20px;
+}
