@@ -26,6 +26,8 @@ closeButton.addEventListener("click", () => {
 function clearform() {
     title.value = "";
     author.value = "";
+    pages.value = "";
+    read.checked = false;
     dialog.close();
 }
 
@@ -56,7 +58,7 @@ function createBook(event) {
     div.appendChild(p);
     div.appendChild(page);
 
-    if (book.read === true) {
+    if (book.read === "true") {
         const readtoggle = document.createElement("div");
         readtoggle.textContent = "Read";
         div.appendChild(readtoggle);
