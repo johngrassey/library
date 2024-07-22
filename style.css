@@ -93,7 +93,8 @@ h3 {
     justify-content: space-between;
 }
 
-#trash {
+.trash {
     height: 20px;
     width: 20px;
+    cursor: pointer;
 }
