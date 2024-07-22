@@ -42,14 +42,14 @@ const library = document.querySelector(".library");
 
 function createBook(event) {
     event.preventDefault();
-    let book = new Book (title.value, author.value, pages.value, read.value);
+    let book = new Book (title.value, author.value, pages.value, read.checked);
     myLibrary.push(book);
 
     const div = document.createElement("div");
     div.classList.add("book");
     const header = document.createElement("h3");
     header.textContent = book.title;
-    const p = document.createElement("p");
+    const p = "By " + document.createElement("p");
     p.textContent = book.author;
     const page = document.createElement("p");
     page.textContent = book.pages + " pages";
@@ -58,7 +58,7 @@ function createBook(event) {
     div.appendChild(p);
     div.appendChild(page);
 
-    if (book.read === "true") {
+    if (book.read === true) {
         const readtoggle = document.createElement("div");
         readtoggle.textContent = "Read";
         div.appendChild(readtoggle);

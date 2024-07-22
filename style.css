@@ -73,10 +73,17 @@ HTML RESET
     display: grid;
     gap: 25px;
     grid-template-columns: repeat(4, 300px);
-    border-radius: 10px;
-    justify-content: space-around;
+    border-radius: 20px;
+    justify-content: center;
   }
 
 .book {
     background-color: white;
+    padding: 20px 20px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px lightgray;
+}
+
+h3 {
+    color: #244026;
 }
