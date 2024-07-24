@@ -41,14 +41,16 @@ const read = document.querySelector("#read");
 const form = document.querySelector("form");
 const library = document.querySelector(".library");
 
+let bookIndex = 0
+
 function createBook(event) {
     event.preventDefault();
-    let book = new Book (title.value, author.value, pages.value, read.checked, myLibrary.length);
+    let book = new Book (title.value, author.value, pages.value, read.checked, bookIndex);
     myLibrary.push(book);
 
     const div = document.createElement("div");
     div.classList.add("book");
-    div.classList.add("class", "b" + book.number.toString());
+    div.classList.add("class", ("b" + bookIndex));
 
     const header = document.createElement("h3");
     header.textContent = book.title;
@@ -57,7 +59,9 @@ function createBook(event) {
     img.classList.add("trash")
     img.setAttribute("src", "images/trash-can-outline.svg");
     img.setAttribute("alt", "Trash");
-    img.setAttribute("id", "b" + book.number.toString());
+    img.setAttribute("id", "b" + bookIndex)
+
+    img.addEventListener("click", removeCard)
 
     const p = document.createElement("p");
     p.textContent = "By " + book.author;
@@ -83,18 +87,16 @@ function createBook(event) {
     library.appendChild(div);
 
     clearform();
+    bookIndex++
 
-    // DELETE BOOK
+};
 
-    const trashBtns = document.querySelectorAll(".trash");
+// DELETE BOOK
 
-    trashBtns.forEach((btn) => {
-        btn.addEventListener("click", () => {
-            const cardId = btn.getAttribute("id");
-            const card = document.querySelector("." + cardId);
-            library.removeChild(card);
-        });
-    });
+function removeCard (event) {
+        const id = event.target.getAttribute("id");
+        console.log(id);
+        document.querySelector("." + id).remove();
 };
 
 form.addEventListener("submit", createBook);
