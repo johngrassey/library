@@ -77,6 +77,8 @@ HTML RESET
     justify-content: center;
   }
 
+  /* Cards */
+
 .book {
     background-color: white;
     padding: 20px 20px;
@@ -97,4 +99,35 @@ h3 {
     height: 20px;
     width: 20px;
     cursor: pointer;
+}
+
+/* Form */
+
+.dialoghead h3 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.formrow {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.formrow input[type="text"], .formrow input[type="phone"] {
+    border: 1px solid #D6D9DC;
+    border-radius: 3px;
+    width: 100%;
+    padding: 7px;
+}
+
+.formrow label {
+    margin-bottom: 5px;
+}
+
+#close {
+    height: 30px;
+    width: 30px;
+    border-radius: 5px;
+    font-weight: 700;
 }
