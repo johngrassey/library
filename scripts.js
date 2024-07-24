@@ -1,6 +1,6 @@
 // Library Functions
 
-const myLibrary = [];
+let myLibrary = [];
 
 function Book(title, author, pages, read, number) {
   this.title = title;
@@ -95,8 +95,12 @@ function createBook(event) {
 
 function removeCard (event) {
         const id = event.target.getAttribute("id");
-        console.log(id);
         document.querySelector("." + id).remove();
+        for (let i = myLibrary.length - 1; i >=0; i--) {
+            if (myLibrary[i].number === Number(id.substring(1))) {
+                myLibrary.splice(i, 1);
+            }
+        }
 };
 
 form.addEventListener("submit", createBook);
