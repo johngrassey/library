@@ -72,17 +72,25 @@ function createBook(event) {
     const headerdiv = document.createElement("div");
     headerdiv.classList.add("bookheader");
 
+    const readLbl = document.createElement("label");
+    readLbl.classList.add("switch");
+    readLbl.setAttribute("id","b" + bookIndex)
+    const readInp = document.createElement("input");
+    readInp.setAttribute("type", "checkbox");
+    const readSpn = document.createElement("span");
+    readSpn.classList.add("slider");
+    readSpn.classList.add("round");
+
     div.appendChild(headerdiv);
     headerdiv.appendChild(header);
     headerdiv.appendChild(img);
     div.appendChild(p);
     div.appendChild(page);
+    readLbl.appendChild(readInp);
+    readLbl.appendChild(readSpn);
+    div.appendChild(readLbl);
 
-    if (book.read === true) {
-        const readtoggle = document.createElement("div");
-        readtoggle.textContent = "Read";
-        div.appendChild(readtoggle);
-    }
+    readInp.addEventListener("change", readBook);
 
     library.appendChild(div);
 
@@ -104,3 +112,29 @@ function removeCard (event) {
 };
 
 form.addEventListener("submit", createBook);
+
+// MARK BOOK READ
+
+function readBook (event) {
+    const toggle  = this.parentElement.getAttribute("id");
+
+    if (this.checked) {
+
+        for (let i = myLibrary.length - 1; i >=0; i--) {
+            if (myLibrary[i].number === Number(toggle.substring(1))) {
+                myLibrary[i].read = true;
+            }
+        }
+        console.log(toggle)
+        console.log("Checkbox is checked..");
+
+    } else {
+        for (let i = myLibrary.length - 1; i >=0; i--) {
+            if (myLibrary[i].number === Number(toggle.substring(1))) {
+                myLibrary[i].read = false;
+            }
+    }
+        console.log(toggle)
+        console.log("Checkbox is not checked..");
+    };
+}
