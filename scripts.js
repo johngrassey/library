@@ -64,19 +64,24 @@ function createBook(event) {
     img.addEventListener("click", removeCard)
 
     const p = document.createElement("p");
+    p.classList.add("author");
     p.textContent = "By " + book.author;
 
     const page = document.createElement("p");
-    page.textContent = book.pages + " pages";
+    page.textContent = "Pages:" + book.pages;
 
     const headerdiv = document.createElement("div");
     headerdiv.classList.add("bookheader");
+
+    const pRead = document.createElement("p");
+    pRead.textContent = "Read:"
 
     const readLbl = document.createElement("label");
     readLbl.classList.add("switch");
     readLbl.setAttribute("id","b" + bookIndex)
     const readInp = document.createElement("input");
     readInp.setAttribute("type", "checkbox");
+    if (book.read) {readInp.checked = true};
     const readSpn = document.createElement("span");
     readSpn.classList.add("slider");
     readSpn.classList.add("round");
@@ -86,6 +91,7 @@ function createBook(event) {
     headerdiv.appendChild(img);
     div.appendChild(p);
     div.appendChild(page);
+    div.appendChild(pRead);
     readLbl.appendChild(readInp);
     readLbl.appendChild(readSpn);
     div.appendChild(readLbl);

@@ -69,10 +69,10 @@ HTML RESET
   }
 
   .library {
-    padding: 25px;
+    padding: 25px 10%;
     display: grid;
     gap: 25px;
-    grid-template-columns: repeat(4, 300px);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     border-radius: 20px;
     justify-content: center;
   }
@@ -101,6 +101,10 @@ h3 {
     cursor: pointer;
 }
 
+.author {
+    margin-bottom: 5px;
+}
+
 /* Form */
 
 .dialoghead h3 {
@@ -126,8 +130,8 @@ h3 {
 }
 
 #close {
-    height: 30px;
-    width: 30px;
+    height: 34px;
+    width: 34px;
     border-radius: 5px;
     font-weight: 700;
 }
