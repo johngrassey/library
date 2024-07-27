@@ -68,7 +68,7 @@ function createBook(event) {
     p.textContent = "By " + book.author;
 
     const page = document.createElement("p");
-    page.textContent = "Pages:" + book.pages;
+    page.textContent = "Pages: " + book.pages;
 
     const headerdiv = document.createElement("div");
     headerdiv.classList.add("bookheader");
