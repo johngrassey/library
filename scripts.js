@@ -2,13 +2,22 @@
 
 let myLibrary = [];
 
-function Book(title, author, pages, read, number) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-  this.number = number;
-};
+// function Book(title, author, pages, read, number) {
+//   this.title = title;
+//   this.author = author;
+//   this.pages = pages;
+//   this.read = read;
+//   this.number = number;
+// };
+
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
+}
 
 // DIALOG MODAL
 
@@ -34,86 +43,82 @@ function clearform() {
 
 // CREATE OBJECT
 
+function addBook(event) {
+    event.preventDefault();
+
+    const book = new Book (title.value, author.value, pages.value, read.checked);
+    myLibrary.push(book);
+
+}
+
 const title = document.querySelector("#title");
 const author = document.querySelector("#author");
 const pages = document.querySelector("#pages");
 const read = document.querySelector("#read");
 const form = document.querySelector("form");
-const library = document.querySelector(".library");
 
-let bookIndex = 0
+function renderBookList() {
 
-function addBook(event) {
-    event.preventDefault();
+    const library = document.querySelector(".library");
 
-    class Book {
-        constructor(title, author, pages, read) {
-            this.title = title;
-            this.author = author;
-            this.pages = pages;
-            this.read = read;
-        }
+    for (book in myLibrary) {
+        const div = document.createElement("div");
+        div.classList.add("book");
+        div.classList.add("class", ("b" + book));
+
+        const header = document.createElement("h3");
+        header.textContent = book.title;
+
+        const img = document.createElement("img");
+        img.classList.add("trash")
+        img.setAttribute("src", "images/trash-can-outline.svg");
+        img.setAttribute("alt", "Trash");
+        img.setAttribute("id", "b" + book)
+
+        img.addEventListener("click", removeCard)
+
+        const p = document.createElement("p");
+        p.classList.add("author");
+        p.textContent = "By " + book.author;
+
+        const page = document.createElement("p");
+        page.textContent = "Pages: " + book.pages;
+    
+        const headerdiv = document.createElement("div");
+        headerdiv.classList.add("bookheader");
+    
+        const pRead = document.createElement("p");
+        pRead.textContent = "Read:"
+    
+        const readLbl = document.createElement("label");
+        readLbl.classList.add("switch");
+        readLbl.setAttribute("id","b" + book)
+        const readInp = document.createElement("input");
+        readInp.setAttribute("type", "checkbox");
+        if (book.read) {readInp.checked = true};
+        const readSpn = document.createElement("span");
+        readSpn.classList.add("slider");
+        readSpn.classList.add("round");
+    
+        div.appendChild(headerdiv);
+        headerdiv.appendChild(header);
+        headerdiv.appendChild(img);
+        div.appendChild(p);
+        div.appendChild(page);
+        div.appendChild(pRead);
+        readLbl.appendChild(readInp);
+        readLbl.appendChild(readSpn);
+        div.appendChild(readLbl);
+    
+        readInp.addEventListener("change", readBook);
+    
+        library.appendChild(div);
     }
-
-    let book = new Book (title.value, author.value, pages.value, read.checked);
-    myLibrary.push(book);
-
-    const div = document.createElement("div");
-    div.classList.add("book");
-    div.classList.add("class", ("b" + bookIndex));
-
-    const header = document.createElement("h3");
-    header.textContent = book.title;
-
-    const img = document.createElement("img");
-    img.classList.add("trash")
-    img.setAttribute("src", "images/trash-can-outline.svg");
-    img.setAttribute("alt", "Trash");
-    img.setAttribute("id", "b" + bookIndex)
-
-    img.addEventListener("click", removeCard)
-
-    const p = document.createElement("p");
-    p.classList.add("author");
-    p.textContent = "By " + book.author;
-
-    const page = document.createElement("p");
-    page.textContent = "Pages: " + book.pages;
-
-    const headerdiv = document.createElement("div");
-    headerdiv.classList.add("bookheader");
-
-    const pRead = document.createElement("p");
-    pRead.textContent = "Read:"
-
-    const readLbl = document.createElement("label");
-    readLbl.classList.add("switch");
-    readLbl.setAttribute("id","b" + bookIndex)
-    const readInp = document.createElement("input");
-    readInp.setAttribute("type", "checkbox");
-    if (book.read) {readInp.checked = true};
-    const readSpn = document.createElement("span");
-    readSpn.classList.add("slider");
-    readSpn.classList.add("round");
-
-    div.appendChild(headerdiv);
-    headerdiv.appendChild(header);
-    headerdiv.appendChild(img);
-    div.appendChild(p);
-    div.appendChild(page);
-    div.appendChild(pRead);
-    readLbl.appendChild(readInp);
-    readLbl.appendChild(readSpn);
-    div.appendChild(readLbl);
-
-    readInp.addEventListener("change", readBook);
-
-    library.appendChild(div);
-
-    clearform();
-    bookIndex++
-
 };
+
+
+
+   // clearform();
 
 // DELETE BOOK
 
@@ -127,7 +132,10 @@ function removeCard (event) {
         }
 };
 
-form.addEventListener("submit", addBook);
+form.addEventListener("submit", (event) => {
+    addBook(event);
+    renderBookList();
+});
 
 // MARK BOOK READ
 
