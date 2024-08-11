@@ -2,14 +2,6 @@
 
 let myLibrary = [];
 
-// function Book(title, author, pages, read, number) {
-//   this.title = title;
-//   this.author = author;
-//   this.pages = pages;
-//   this.read = read;
-//   this.number = number;
-// };
-
 class Book {
     constructor(title, author, pages, read) {
         this.title = title;
@@ -61,13 +53,13 @@ function renderBookList() {
 
     const library = document.querySelector(".library");
 
-    for (book in myLibrary) {
+    for (const book in myLibrary) {
         const div = document.createElement("div");
         div.classList.add("book");
-        div.classList.add("class", ("b" + book));
+        //div.classList.add("class", ("b" + book));
 
         const header = document.createElement("h3");
-        header.textContent = book.title;
+        header.textContent = myLibrary[book].title;
 
         const img = document.createElement("img");
         img.classList.add("trash")
@@ -79,10 +71,10 @@ function renderBookList() {
 
         const p = document.createElement("p");
         p.classList.add("author");
-        p.textContent = "By " + book.author;
+        p.textContent = "By " + myLibrary[book].author;
 
         const page = document.createElement("p");
-        page.textContent = "Pages: " + book.pages;
+        page.textContent = "Pages: " + myLibrary[book].pages;
     
         const headerdiv = document.createElement("div");
         headerdiv.classList.add("bookheader");
@@ -95,7 +87,7 @@ function renderBookList() {
         readLbl.setAttribute("id","b" + book)
         const readInp = document.createElement("input");
         readInp.setAttribute("type", "checkbox");
-        if (book.read) {readInp.checked = true};
+        if (myLibrary[book].read) {readInp.checked = true};
         const readSpn = document.createElement("span");
         readSpn.classList.add("slider");
         readSpn.classList.add("round");
