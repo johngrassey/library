@@ -43,9 +43,19 @@ const library = document.querySelector(".library");
 
 let bookIndex = 0
 
-function createBook(event) {
+function addBook(event) {
     event.preventDefault();
-    let book = new Book (title.value, author.value, pages.value, read.checked, bookIndex);
+
+    class Book {
+        constructor(title, author, pages, read) {
+            this.title = title;
+            this.author = author;
+            this.pages = pages;
+            this.read = read;
+        }
+    }
+
+    let book = new Book (title.value, author.value, pages.value, read.checked);
     myLibrary.push(book);
 
     const div = document.createElement("div");
@@ -117,7 +127,7 @@ function removeCard (event) {
         }
 };
 
-form.addEventListener("submit", createBook);
+form.addEventListener("submit", addBook);
 
 // MARK BOOK READ
 

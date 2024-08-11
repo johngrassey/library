@@ -39,12 +39,13 @@ HTML RESET
     color: #F2F2F2;
     border-style: none;
     cursor: pointer;
-  }
-
-  #showDialog, #submit{
     border-radius: 20px;
     padding: 2px 30px;
     height: 36px;
+  }
+
+  #showDialog, #submit{
+
   }
 
   dialog {
