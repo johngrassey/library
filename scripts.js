@@ -53,10 +53,11 @@ const library = document.querySelector(".library");
 
 function renderBookList() {
 
+    clearBookList();
     for (const book in myLibrary) {
         const div = document.createElement("div");
         div.classList.add("book");
-        //div.classList.add("class", ("b" + book));
+        div.classList.add("b" + book);
 
         const header = document.createElement("h3");
         header.textContent = myLibrary[book].title;
@@ -115,18 +116,13 @@ function clearBookList() {
 // DELETE BOOK
 
 function removeCard (event) {
-        const id = event.target.getAttribute("id");
-        document.querySelector("." + id).remove();
-        for (let i = myLibrary.length - 1; i >=0; i--) {
-            if (myLibrary[i].number === Number(id.substring(1))) {
-                myLibrary.splice(i, 1);
-            }
-        }
+        const id = Number(event.target.getAttribute("id").substring(1));
+        myLibrary.splice(id, 1);
+        renderBookList();
 };
 
 form.addEventListener("submit", (event) => {
     addBook(event);
-    clearBookList();
     renderBookList();
     clearform();
 });
