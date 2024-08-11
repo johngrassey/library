@@ -49,9 +49,9 @@ const pages = document.querySelector("#pages");
 const read = document.querySelector("#read");
 const form = document.querySelector("form");
 
-function renderBookList() {
+const library = document.querySelector(".library");
 
-    const library = document.querySelector(".library");
+function renderBookList() {
 
     for (const book in myLibrary) {
         const div = document.createElement("div");
@@ -108,9 +108,9 @@ function renderBookList() {
     }
 };
 
-
-
-   // clearform();
+function clearBookList() {
+    library.innerHTML = "";
+}
 
 // DELETE BOOK
 
@@ -126,7 +126,9 @@ function removeCard (event) {
 
 form.addEventListener("submit", (event) => {
     addBook(event);
+    clearBookList();
     renderBookList();
+    clearform();
 });
 
 // MARK BOOK READ
