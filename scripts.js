@@ -126,7 +126,6 @@ form.addEventListener("submit", (event) => {
     renderBookList();
     clearform();
 });
-
 // MARK BOOK READ
 
 function readBook (event) {
