@@ -60,10 +60,6 @@ button {
   height: 36px;
 }
 
-#showDialog,
-#submit {
-}
-
 dialog {
   width: 400px;
   border-style: none;
@@ -160,8 +156,13 @@ p {
   font-weight: 700;
 }
 
-input:invalid {
-  border: solid red 1px;
+input.error {
+  background-color: pink;
+}
+
+span {
+  font-size: small;
+  color: red;
 }
 
 /* SWITCH */
